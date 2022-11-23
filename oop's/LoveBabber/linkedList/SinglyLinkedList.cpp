@@ -1,4 +1,5 @@
 #include<iostream>
+#include<map>
 using namespace std;
  class Node{
     public:
@@ -132,6 +133,88 @@ void deleteNode(int position, Node* &head){
  }
 
 
+bool isCircular(Node* &head){
+    if(head==NULL){
+        return true;
+    }
+
+    Node* temp = head->next;
+    while(temp!=NULL && temp!=head){
+        temp =temp->next;
+    }
+    if(temp==head){
+        return true;
+    }
+    if(temp==NULL){
+        return false;
+    }
+}
+
+bool detectLoop(Node* &head){
+    if(head ==NULL){
+        return false; 
+    }
+    map<Node*, bool> visited;
+    Node* temp = head;
+    while(temp!=NULL){
+        // cycle is present
+        if(visited[temp]==true){
+            return true;
+        }
+        visited[temp]= true;
+        temp = temp->next;
+    }
+    return false;
+}
+
+
+Node*  floydDetectLoop(Node* &head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node* slow = head;
+    Node* fast =head;
+    while(slow!=NULL && fast!=NULL){
+        fast = fast->next;
+        if(fast!=NULL){
+            fast = fast->next;
+        }
+        slow = slow ->next;
+        if(slow==fast){
+            return slow;
+        }
+    }
+    return NULL;
+        
+}
+
+Node* getStartingPoint(Node* &head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node* intersection = floydDetectLoop(head);
+    Node* slow = head;
+
+    while(slow !=intersection){
+        slow = slow->next;
+        intersection =intersection->next;
+    }
+    return slow;
+}
+
+void removeLoop(Node* &head){
+    if(head==NULL){
+        return;
+    }
+    Node* startOfLoop =getStartingPoint(head);
+    Node* temp =startOfLoop;
+
+    while(temp!= startOfLoop){
+        temp =temp->next;
+    }
+    temp->next =NULL;
+}
+
 int main(){
 
 Node* node1= new Node(20);
@@ -169,15 +252,18 @@ print(head);
 // // insertAtPosition(tail,head,7 , 100);
 // // print(head);
 
-cout<<"Head "<<head->data<<endl;
-cout<<"Tail "<<tail->data<<endl;
+// cout<<"Head "<<head->data<<endl;
+// cout<<"Tail "<<tail->data<<endl;
 
 insertAtPosition(head,tail,7, 499);
 print(head);
 
-cout<<"Head "<<head->data<<endl;
-cout<<"Tail "<<tail->data<<endl;
 
+
+// cout<<"Head "<<head->data<<endl;
+// cout<<"Tail "<<tail->data<<endl;
+
+/*
 deleteNode(1,head);
 print(head);
 
@@ -186,6 +272,24 @@ deleteNode(6,head);
 print(head);
 
 deleteNode(3,head);
+print(head);
+*/
+
+tail->next  =head->next;
+
+if(detectLoop){
+    cout<<"Loop is present "<<endl;
+}
+else{
+    cout<<"Loop is absent "<<endl;
+}
+
+Node* detect = floydDetectLoop(head);
+cout<<"detect the loop at node ->"<<detect->data<<endl;
+Node* startOfLoop =getStartingPoint(head);
+cout<<"starting node is "<<startOfLoop->data<<endl;
+
+removeLoop(head);
 print(head);
 return 0;
 }
