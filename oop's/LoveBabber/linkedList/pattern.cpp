@@ -218,3 +218,62 @@
 // }
 // return 0;
 // }
+
+
+// ****
+// ***
+// **
+// *
+
+// #include<iostream>
+// using namespace std;
+ 
+// int main(){
+// int n;
+// cin>>n;
+// // for(int i =1; i<=n; i++){
+// //     for(int j=n; j>=i; j--){
+// //         cout<<"*";
+// //     }
+// //     cout<<endl;
+// // }
+// int i=1;
+// while(i<=n){
+//     int j=n;
+//     while(j>=i){
+//         cout<<"*";
+//         j--;
+//     }
+//     cout<<endl;
+//     i++;
+// }
+// return 0;
+// }
+
+
+// 12345
+// 1234
+// 123
+// 12
+// 1
+
+#include<iostream>
+using namespace std;
+ 
+int main(){
+int n;
+cin>>n;
+int i =n;
+while(i>=1){
+    int j=1;
+    while(j<=i){
+        cout<<j<<" ";
+        j++;
+    }
+
+    cout<<endl;
+    i--;
+}
+
+return 0;
+}
