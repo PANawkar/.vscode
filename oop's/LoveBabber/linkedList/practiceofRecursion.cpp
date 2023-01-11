@@ -181,61 +181,94 @@
 // }
 
 
-#include<iostream>
-using namespace std;
+// #include<iostream>
+// using namespace std;
 
-int partition(int arr[], int s, int e){
-    int pivot = arr[s];
-    int cnt =0;
-    for(int i=s+1; i<=e; i++){
-        if(arr[i]<=pivot){
-            cnt ++;
-        }
-    }
+// int partition(int arr[], int s, int e){
+//     int pivot = arr[s];
+//     int cnt =0;
+//     for(int i=s+1; i<=e; i++){
+//         if(arr[i]<=pivot){
+//             cnt ++;
+//         }
+//     }
+ 
+//     // place pivot at right position
+//     int pivotIndex = s+ cnt;
+//     swap(arr[pivotIndex], arr[s]);
 
-    // place pivot at right position
-    int pivotIndex = s+ cnt;
-    swap(arr[pivotIndex], arr[s]);
+//     // left and right wala part sambhal lete h
+//     int i =s, j=e;
+//     while(i<pivotIndex  && j>pivotIndex){
+//         while(arr[i]< pivot){
+//             i++;
+//         }
+//         while(arr[j]> pivot){
+//             j--;
+//         }
 
-    // left and right wala part sambhal lete h
-    int i =s, j=e;
-    while(i<pivotIndex  && j>pivotIndex){
-        while(arr[i]< pivot){
-            i++;
-        }
-        while(arr[j]> pivot){
-            j--;
-        }
+//         if(i<pivotIndex  && j>pivotIndex){
+//             swap(arr[i++], arr[j--]);
+//         }
+//     }
+//     return pivotIndex;
+// }
+// void quickSort(int arr[], int s, int e){
+//     // base case
+//     if(s>=e){
+//         return ;
+//     }
+//     // partition 
+//     int p = partition(arr,s ,e);
 
-        if(i<pivotIndex  && j>pivotIndex){
-            swap(arr[i++], arr[j--]);
-        }
-    }
-    return pivotIndex;
-}
-void quickSort(int arr[], int s, int e){
-    // base case
-    if(s>=e){
-        return ;
-    }
-    // partition 
-    int p = partition(arr,s ,e);
+//     //left part sort kro
+//     quickSort(arr, s, p-1);
 
-    //left part sort kro
-    quickSort(arr, s, p-1);
+//     // right part sort kro
+//     quickSort(arr, p+1, e);
+// }
+// int main(){
+// int arr[6] = {1,0, 0, 0, 2, 0};
+// int n =6; 
 
-    // right part sort kro
-    quickSort(arr, p+1, e);
-}
-int main(){
-int arr[6] = {1,0, 0, 0, 2, 0};
-int n =6; 
+// quickSort(arr, 0, n-1);
 
-quickSort(arr, 0, n-1);
+// for(int i=0; i<n;i++){
+//     cout<<arr[i]<<" ";
+// }
+// cout<<endl;
+// return 0;
+// }
 
-for(int i=0; i<n;i++){
-    cout<<arr[i]<<" ";
-}
-cout<<endl;
-return 0;
-}
+
+// #include<iostream>
+// #include<algorithm>
+// using namespace std;
+//  int getminDiff(int arr[], int n, int m){
+//     if(n==0 || m==0){
+//         return 0;
+//     }
+//     if(n<m){
+//         return -1;
+//     }
+//     int mindiff = INT16_MAX;
+//     sort(arr, arr+n);
+
+//     for(int i=0; i+m-1<n; i++){
+//         int difference = arr[i+m-1]- arr[i];
+//         if(difference<mindiff){
+//             mindiff = difference;
+//         }
+//     }
+//     return mindiff;
+//  }
+// int main(){
+// int arr[]={3, 4, 1, 9, 56, 7, 9, 12};
+// int n = sizeof(arr)/ sizeof(arr[0]);
+
+// int m =5;
+
+// cout<<"The minimum difference is "<<getminDiff(arr, n, m)<<endl;
+
+// return 0;
+// }
